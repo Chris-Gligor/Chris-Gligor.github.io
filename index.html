@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>InvestmentCalculator</title>
 
-	<link rel="stylesheet" href="Site.css">
+	<link rel="stylesheet" href="Content\Site.css">
 	
 	<script src="Site.js"></script>
     
@@ -31,28 +31,7 @@
             </button>
        
             <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                <ul class="navbar-nav flex-grow-2">
-                    <li class="nav-item dropdown " style="background-color:white;">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            @InvestmentCalculator.Resources.Home.Language
-                        </a>
-                        <div class="dropdown-menu " aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item @(Language == "en" ? " active" : "")" href="@Url.Action("Index","Home", new { Language = "en" })"> <img src="~/Images/USA-Flag.png"/> @InvestmentCalculator.Resources.Home.English</a>
-                            <a class="dropdown-item @(Language == "fr" ? "active" : "")" href="@Url.Action("Index","Home", new { Language = "fr" })"> <img src="~/Images/France-Flag.png" /> @InvestmentCalculator.Resources.Home.French</a>
-                        </div>
-                    </li>
-
-                </ul>
-                <ul class="navbar-nav flex-grow-2" style="display:none">
-                    <li class="nav-item dropdown">
-
-                        <select id="Currency" onchange="ChangeCurrency()">
-                            <option value="€">Euro (€)</option>
-                            <option value="$">Dollar ($)</option>
-                        </select>
-
-                    </li>
-                </ul>
+                
             </div>
         </div>
     </nav>
@@ -67,12 +46,12 @@
     <div class="col-sm-12" style="display:none">
         <br />
 
-        <h3>@InvestmentCalculator.Resources.Home.Shares</h3>
+        <h3>Shares</h3>
         <div class="Zone">
             <label class="label">Type</label>
             <select id="Type" onchange="TypeChanged()">
-                <option value="1">@InvestmentCalculator.Resources.Home.Actions</option>
-                <option value="2">@InvestmentCalculator.Resources.Home.Sicav</option>
+                <option value="1">Actions</option>
+                <option value="2">Sicav</option>
             </select>
         </div>
 
@@ -80,29 +59,29 @@
 
     <div class="col-sm">
         <br />
-        <h3>@InvestmentCalculator.Resources.Home.Buy</h3>
+        <h3>Buy</h3>
         <div class="Zone">
-            <label class="label">@InvestmentCalculator.Resources.Home.Quantity</label>
+            <label class="label">Quantity</label>
             <input type="text" id="SharesBuy" class="input" value="0" oninput="CalculateBuy()" onkeypress='validate(event)' />
         </div>
         <div class="Zone">
-            <label class="label">@InvestmentCalculator.Resources.Home.PurchasePrice</label>
+            <label class="label">Purchase Price</label>
             <input type="text" id="PriceBuy" class="input" value="0" oninput="CalculateBuy()" onkeypress='validate(event)' />
         </div>
         <div class="Zone">
-            <label class="label" data-toggle="tooltip" title="@InvestmentCalculator.Resources.Home.TOBTT">@InvestmentCalculator.Resources.Home.TOB</label>
-            <input type="number" step="any" class="input-left" id="PercTOBBuy" value="0.35" oninput="CalculateBuy()" onkeypress='validate(event)' data-toggle="tooltip" title="@InvestmentCalculator.Resources.Home.TOBTT" />
+            <label class="label" data-toggle="tooltip" >STF (%)</label>
+            <input type="number" step="any" class="input-left" id="PercTOBBuy" value="0.35" oninput="CalculateBuy()" onkeypress='validate(event)'  />
             <input type="text" class="input-right" id="TOBBuy" value="0" disabled />
         </div>
         <div class="Zone">
-            <label class="label">@InvestmentCalculator.Resources.Home.Commission</label>
+            <label class="label">Commission</label>
             <input type="text" id="CommissionBuy" class="input" value="0" oninput="CalculateBuy()" onkeypress='validate(event)' />
         </div>
 
         <br />
 
         <div class="Zone">
-            <label class="label">@InvestmentCalculator.Resources.Home.TotalCost</label>
+            <label class="label">Total Cost</label>
             <input type="text" id="ResultBuy" class="input" value="0" disabled />
 
         </div>
@@ -110,29 +89,29 @@
     </div>
     <div class="col-sm">
         <br />
-        <h3>@InvestmentCalculator.Resources.Home.Sell</h3>
+        <h3>Sell</h3>
         <div class="Zone">
-            <label class="label">@InvestmentCalculator.Resources.Home.Quantity</label>
+            <label class="label">Quantity</label>
             <input type="text" id="SharesSell" class="input" value="0" oninput="CalculateSell()" onkeypress='validate(event)' />
         </div>
         <div class="Zone">
-            <label class="label">@InvestmentCalculator.Resources.Home.SellPrice</label>
+            <label class="label">Sell Price</label>
             <input type="text" id="PriceSell" class="input" value="0" oninput="CalculateSell()" onkeypress='validate(event)' />
         </div>
         <div class="Zone">
-            <label class="label" data-toggle="tooltip" title="@InvestmentCalculator.Resources.Home.TOBTT">@InvestmentCalculator.Resources.Home.TOB</label>
-            <input type="number" step="any" class="input-left" id="PercTOBSell" value="0.35" oninput="CalculateSell()" onkeypress='validate(event)' data-toggle="tooltip" title="@InvestmentCalculator.Resources.Home.TOBTT" />
+            <label class="label" data-toggle="tooltip" >STF (%)</label>
+            <input type="number" step="any" class="input-left" id="PercTOBSell" value="0.35" oninput="CalculateSell()" onkeypress='validate(event)' />
             <input type="text" class="input-right" id="TOBSell" value="0" disabled />
         </div>
         <div class="Zone">
-            <label class="label">@InvestmentCalculator.Resources.Home.Commission</label>
+            <label class="label">Commission</label>
             <input type="text" id="CommissionSell" class="input" value="0" oninput="CalculateSell()" onkeypress='validate(event)' />
         </div>
 
         <br />
 
         <div class="Zone">
-            <label class="label">@InvestmentCalculator.Resources.Home.Result</label>
+            <label class="label">Result</label>
             <input type="text" id="ResultSell" class="input" value="0" disabled />
 
         </div>
@@ -142,19 +121,19 @@
         <br />
         <br />
 
-        <h3>@InvestmentCalculator.Resources.Home.CapitalGain</h3>
+        <h3>CapitalGain</h3>
         <div class="Zone">
-            <label class="label">@InvestmentCalculator.Resources.Home.FinalResult</label>
+            <label class="label">FinalResult</label>
             <input type="text" id="Result" class="input" value="0" disabled />
         </div>
         <div id="SicavTax">
             <div class="Zone Tax">
-                <label class="label">@InvestmentCalculator.Resources.Home.Tax</label>
+                <label class="label">Tax</label>
                 <input type="number" step="any" id="PercTax" class="input-left" value="30" onchange="CalculateTax()" onkeypress='validate(event)' />
                 <input type="text" id="Tax" class="input-right" value="0" disabled />
             </div>
             <div class="Zone Tax">
-                <label class="label">@InvestmentCalculator.Resources.Home.Net</label>
+                <label class="label">Net</label>
                 <input type="text" id="Net" class="input" value="0" disabled />
 
             </div>
